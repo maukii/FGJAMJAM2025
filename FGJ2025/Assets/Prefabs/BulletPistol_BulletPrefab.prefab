@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 152553949000509188}
   - component: {fileID: 8281569209408796937}
   - component: {fileID: 1168570111154448214}
+  - component: {fileID: 1765494077178337846}
   m_Layer: 8
   m_Name: Graphics
   m_TagString: Untagged
@@ -161,7 +162,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 254bad0e16ac43a4c93b99086544138e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -183,3 +184,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1765494077178337846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049845807019518551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b206892f4f5bd04ebd4651cf0c37a58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wobbleIntensity: 0.1
+  wobbleSpeed: 2
