@@ -4,15 +4,19 @@ public class CameraController : MonoBehaviour
 {
     [Header("Assign this in editor")]
     public Transform Target;
-    Vector3 _offset;
+    public float SmoothTime = .1f;
+    Vector3 offset;
+    Vector3 targetPos;
+    Vector3 cVel;
 
     void Start()
     {
-        _offset = Target.transform.position - transform.position;
+        offset = Target.transform.position - transform.position;
     }
 
     void LateUpdate()
     {
-        transform.position = Target.transform.position - _offset;
+        targetPos = Target.transform.position - offset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref cVel, SmoothTime);
     }
 }
