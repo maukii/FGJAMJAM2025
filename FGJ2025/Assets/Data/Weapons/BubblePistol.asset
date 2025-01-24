@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a637cafcafb200e4aa0e681268afd21b, type: 3}
   m_Name: BubblePistol
   m_EditorClassIdentifier: 
-  weaponName: 
-  projectilePrefab: {fileID: 0}
+  weaponName: Bubble Pistol
+  projectilePrefab: {fileID: 7536925687814498309, guid: fa678b4ca36ec1e41bfdf0e73597672b, type: 3}
   fireRate: 0.5
   projectileSpeed: 20
-  damage: 10
+  damage: 1
