@@ -5,6 +5,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] int maxHealth = 100;
     
+    public bool IsBubbled => isDead;
     public event Action OnTakeDamage;
     public event Action OnDeath;
     
@@ -20,10 +21,14 @@ public class Health : MonoBehaviour
 
         currentHealth -= damageAmount;
         currentHealth = Mathf.Max(currentHealth, 0);
-        OnTakeDamage?.Invoke();
 
         if (currentHealth <= 0 && !isDead)
+        {
             Die();
+            return;
+        }
+        
+        OnTakeDamage?.Invoke();
     }
 
     void Die()

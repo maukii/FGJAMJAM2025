@@ -4,8 +4,8 @@ public class Melee : MonoBehaviour
 {
     [SerializeField] Transform meleeHitPoint;
     [SerializeField] float meleeHitSize = 3f;
-    [SerializeField] LayerMask targetedLayermask; 
-    [SerializeField] BubbleWobble bubblePrefab;
+    [SerializeField] LayerMask targetedLayermask;
+    [SerializeField] float meleeHitCooldown = 0.5f;
 
     float nextHitTime;
     PlayerInputHandler inputHandler;
@@ -24,11 +24,12 @@ public class Melee : MonoBehaviour
         var hits = Physics.OverlapSphere(meleeHitPoint.position, meleeHitSize, targetedLayermask);
         foreach (var hit in hits)
         {
-            if (hit.GetComponentInParent<BubbleWobble>() != null) continue;
-
-            var bubble = Instantiate(bubblePrefab, hit.transform.position, hit.transform.rotation);
-            hit.transform.SetParent(bubble.transform);
+            var health = hit.GetComponent<Health>();
+            if (health != null && !health.IsBubbled)
+                health.TakeDamage(1);
         }
+
+        nextHitTime = Time.time + meleeHitCooldown;
     }
 
     void OnDrawGizmos()
