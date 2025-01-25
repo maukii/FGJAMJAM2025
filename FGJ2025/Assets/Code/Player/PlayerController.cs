@@ -28,9 +28,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GroundPlayer();
-
-        if (melee.IsAttacking) return;
-
         HandleMovement();
         HandleRotation();
     }

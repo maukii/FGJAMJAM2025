@@ -10,9 +10,7 @@ public class Melee : MonoBehaviour
     [SerializeField] Animator anim;
 
     public int Damage => baseDamage + (int)UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.Damage);
-    public bool IsAttacking => isAttacking;
 
-    bool isAttacking = false;
     float nextHitTime = 0;
     PlayerInputHandler inputHandler;
 
@@ -30,8 +28,6 @@ public class Melee : MonoBehaviour
 
     void Hit()
     {
-        isAttacking = true;
-
         anim.SetTrigger("Hit");
 
         var hits = Physics.OverlapSphere(meleeHitPoint.position, meleeHitSize, targetedLayermask);
@@ -47,8 +43,6 @@ public class Melee : MonoBehaviour
 
     void Stab()
     {
-        isAttacking = true;
-
         anim.SetTrigger("Stab");
 
         var hits = Physics.OverlapSphere(meleeHitPoint.position, meleeHitSize, targetedLayermask);
@@ -64,8 +58,6 @@ public class Melee : MonoBehaviour
 
         nextHitTime = Time.time + Mathf.Max(0, meleeHitCooldown - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.AttackRate));
     }
-
-    public void OnAttackAnimationCompleted() => isAttacking = false;
 
     void OnDrawGizmos()
     {
