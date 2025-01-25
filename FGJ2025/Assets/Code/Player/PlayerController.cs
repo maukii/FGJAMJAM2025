@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController), typeof(PlayerInputHandler))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
+    public static PlayerController Instance;
+
+    [SerializeField] float baseMovementSpeed = 5f;
     [SerializeField] float rotationSpeed = 10f;
     [SerializeField] Transform cameraTransform;
 
@@ -14,12 +16,15 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
+
         characterController = GetComponent<CharacterController>();
         inputHandler = GetComponent<PlayerInputHandler>();
     }
 
     void Update()
     {
+        GroundPlayer();
         HandleMovement();
         HandleRotation();
     }
@@ -36,7 +41,15 @@ public class PlayerController : MonoBehaviour
         right.Normalize();
 
         Vector3 moveDirection = (forward * inputHandler.MoveInput.y + right * inputHandler.MoveInput.x).normalized;
-        characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
+        float movementSpeed = baseMovementSpeed + UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.PlayerMovementSpeed);
+        characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
+    }
+
+    void GroundPlayer()
+    {
+        var position = characterController.transform.position;
+        position.y = 0;
+        characterController.transform.position = position;
     }
 
     void HandleRotation()

@@ -1,18 +1,36 @@
 using System;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] float hoverScale = 1.1f;
     [SerializeField] float scaleDuration = 0.2f;
 
+    [SerializeField] TextMeshProUGUI upgradeNameLabel;
+    [SerializeField] TextMeshProUGUI upgradeDescriptionLabel;
+    [SerializeField] Image upgradeBackground;
+    [SerializeField] Image upgradeIcon;
 
-    public event Action UpgradeOptionSelected;
+
+    public event Action<UpgradeData> UpgradeOptionSelected;
 
     bool allowInput = false;
+    UpgradeData upgradeData;
 
+
+    public void SetUpgradeData(UpgradeData upgradeData)
+    {
+        this.upgradeData = upgradeData;     
+        
+        upgradeNameLabel.SetText(upgradeData.upgradeName);
+        upgradeDescriptionLabel.SetText(upgradeData.description);
+        //upgradeBackground
+        upgradeIcon.sprite = upgradeData.icon;
+    }
 
     public void ToggleAllowInput(bool state) => allowInput = state;
 
@@ -27,7 +45,7 @@ public class UpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (!allowInput) return;
 
-        UpgradeOptionSelected?.Invoke();
+        UpgradeOptionSelected?.Invoke(upgradeData);
     }
 
     public void OnPointerExit(PointerEventData eventData)
