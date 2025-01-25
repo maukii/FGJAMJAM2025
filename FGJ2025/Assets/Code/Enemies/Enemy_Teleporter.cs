@@ -25,7 +25,7 @@ public class Enemy_Teleporter : EnemyController
         base.Update();
     }
 
-    protected override void HandleMovement()
+    protected override bool HandleMovement()
     {
         // Teleport at spawn
         if(!initialTeleport)
@@ -39,6 +39,8 @@ public class Enemy_Teleporter : EnemyController
             teleportTimer = 0f;
             Teleport();
         }
+
+        return false;
     }
 
     protected override void HandleRotation()
@@ -78,6 +80,7 @@ public class Enemy_Teleporter : EnemyController
 
     protected override void Attack()
     {
+        base.Attack();
         GameObject go = Instantiate(ProjectilePrefab, transform.position, Quaternion.identity);
         Projectile projectile = go.GetComponent<Projectile>();
         projectile.Initialize(LayerMask.NameToLayer("Player"), 10, 5f, transform.forward);

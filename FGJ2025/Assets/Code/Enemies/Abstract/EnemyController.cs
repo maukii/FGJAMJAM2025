@@ -5,13 +5,15 @@ public abstract class EnemyController : MonoBehaviour
 {
     private EnemyManager enemyManager;
     protected Health health;
+    protected Animator animator;
 
     // For movement
     [SerializeField] protected float mSpeed = 1f;
     [SerializeField] protected float rSpeed = 1f;
     protected Vector3 newPos; // Calculate new position into this before passing it into transform.position
-    protected Vector3 target = Vector3.zero; // todo: this is probably always playerpos
+    protected Vector3 target = Vector3.zero; // this is probably always playerpos
     protected GameObject playerGO;
+    protected bool moving;
 
     // For collision distance calculations
     Vector3 offset;
@@ -24,6 +26,7 @@ public abstract class EnemyController : MonoBehaviour
 
     void OnEnable()
     {
+        animator = GetComponentInChildren<Animator>();
         health = GetComponent<Health>();
         health.OnDeath += Die;
     }
@@ -41,12 +44,14 @@ public abstract class EnemyController : MonoBehaviour
 
         HandleEnemyCollisions();
         HandleRotation();
-        HandleMovement();
+        moving = HandleMovement();
 
         if(CanAttack())
         {
             Attack();
         }
+
+        UpdateAnimator();
 
         // Set Y to 0 so the enemy is never under or above ground level
         newPos.y = 0;
@@ -62,6 +67,20 @@ public abstract class EnemyController : MonoBehaviour
     {
         enemyManager.RemoveEnemy(this);
         Destroy(gameObject);
+    }
+
+    protected void UpdateAnimator()
+    {
+        if(!animator)
+        {
+            return;
+        }
+        animator.SetBool("Moving", moving);
+    }
+
+    protected void TriggerAttackAnimation()
+    {
+        animator.SetTrigger("Attack");
     }
 
     protected virtual void HandleEnemyCollisions()
@@ -95,9 +114,12 @@ public abstract class EnemyController : MonoBehaviour
 
     protected abstract void HandleRotation();
 
-    protected abstract void HandleMovement();
+    protected abstract bool HandleMovement();
 
     protected abstract bool CanAttack();
 
-    protected abstract void Attack();
+    protected virtual void Attack()
+    {
+        TriggerAttackAnimation();
+    }
 }
