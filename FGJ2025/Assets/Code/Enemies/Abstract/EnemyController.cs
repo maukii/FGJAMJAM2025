@@ -13,7 +13,7 @@ public abstract class EnemyController : MonoBehaviour
     protected Vector3 newPos; // Calculate new position into this before passing it into transform.position
     protected Vector3 target = Vector3.zero; // this is probably always playerpos
     protected GameObject playerGO;
-    protected bool moving;
+    protected bool animMoving;
 
     // For collision distance calculations
     Vector3 offset;
@@ -43,12 +43,17 @@ public abstract class EnemyController : MonoBehaviour
         UpdateTargetPos();
 
         HandleEnemyCollisions();
-        HandleRotation();
-        moving = HandleMovement();
-
-        if(CanAttack())
+        if(!health.IsBubbled)
         {
-            Attack();
+            HandleRotation();
+            animMoving = HandleMovement();
+            if(CanAttack())
+            {
+                Attack();
+            }
+        }else{
+            // Animator bool
+            animMoving = false;
         }
 
         UpdateAnimator();
@@ -75,7 +80,7 @@ public abstract class EnemyController : MonoBehaviour
         {
             return;
         }
-        animator.SetBool("Moving", moving);
+        animator.SetBool("Moving", animMoving);
     }
 
     protected void TriggerAttackAnimation()

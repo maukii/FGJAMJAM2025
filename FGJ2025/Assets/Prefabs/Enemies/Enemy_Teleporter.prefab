@@ -86,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac534cfb221b1748a1e2d6034bc90af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BubblePrefab: {fileID: 2131268268808720036, guid: ff06f12ed89034c4db0bd8c8e8678c4f, type: 3}
   maxHealth: 1
 --- !u!1 &3165133266395672266
 GameObject:

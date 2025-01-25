@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public GameObject BubblePrefab;
+    private GameObject bubbleGO;
+
     [SerializeField] int maxHealth = 100;
     
-    public bool IsBubbled => isDead;
+    public bool IsBubbled => isBubbled;
     public event Action OnTakeDamage;
     public event Action OnBubbled;
     public event Action OnDeath;
@@ -44,6 +47,7 @@ public class Health : MonoBehaviour
     void Bubble()
     {
         isBubbled = true;
+        bubbleGO = Instantiate(BubblePrefab, transform);
         OnBubbled?.Invoke();
     }
 
