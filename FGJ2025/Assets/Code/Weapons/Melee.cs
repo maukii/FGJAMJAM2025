@@ -7,7 +7,7 @@ public class Melee : MonoBehaviour
     [SerializeField] LayerMask targetedLayermask;
     [SerializeField] float meleeHitCooldown = 0.5f;
 
-    float nextHitTime;
+    float nextHitTime = 0;
     PlayerInputHandler inputHandler;
 
 
