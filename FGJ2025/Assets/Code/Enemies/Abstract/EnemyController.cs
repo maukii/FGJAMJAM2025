@@ -1,21 +1,35 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+[RequireComponent(typeof(Health))]
+public abstract class EnemyController : MonoBehaviour
 {
     private EnemyManager enemyManager;
+    protected Health health;
 
-    // For distance calculations
+    // For movement
+    [SerializeField] protected float mSpeed = 1f;
+    [SerializeField] protected float rSpeed = 1f;
+    protected Vector3 newPos; // Calculate new position into this before passing it into transform.position
+    protected Vector3 target = Vector3.zero; // todo: this is probably always playerpos
+
+    // For collision distance calculations
     Vector3 offset;
     float sqrLen;
     float closeDist = 1f;
     [SerializeField] float pushForce = 1f;
 
-    // Calculate new distance into this before passing it into transform.position
-    Vector3 newPos;
+    void OnEnable()
+    {
+        health = GetComponent<Health>();
+        health.OnDeath += Die;
+    }
 
-    Vector3 target = Vector3.zero;
+    void OnDisable()
+    {
+        health.OnDeath -= Die;
+    }
 
-    void Update()
+    protected virtual void Update()
     {
         newPos = transform.position;
 
@@ -33,7 +47,7 @@ public class EnemyController : MonoBehaviour
         enemyManager = em;
     }
 
-    public void Die()
+    protected void Die()
     {
         enemyManager.RemoveEnemy(this);
         Destroy(gameObject);
@@ -60,16 +74,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void HandleRotation()
-    {
-        Vector3 targetDir = target - transform.position;
-        float singleStep = 1f * Time.deltaTime;
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, singleStep, 0.0f);
-        transform.rotation = Quaternion.LookRotation(newDir);
-    }
+    protected abstract void HandleRotation();
 
-    void HandleMovement()
-    {
-        newPos += transform.forward * Time.deltaTime;
-    }
+    protected abstract void HandleMovement();
 }

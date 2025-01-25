@@ -5,10 +5,11 @@ using UnityEngine.InputSystem;
 public class EnemyManager : MonoBehaviour
 {
     public GameObject[] EnemyTypes;
-    [SerializeField] private float timer;
+    [SerializeField] private float spawnTimer;
     [SerializeField] private float enemySpawnInterval;
     [SerializeField] List<EnemyController> EnemyList = new List<EnemyController>();
-    [SerializeField] int enemyCount = 0;
+    [SerializeField] int totalEnemiesSpawned = 0;
+    public int TotalEnemiesSpawned { get { return totalEnemiesSpawned; } }
     public EnemyController[] EnemyControllers { get { return EnemyList.ToArray(); } }
 
     float minX = -50, maxX;
@@ -16,10 +17,10 @@ public class EnemyManager : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if(timer > enemySpawnInterval)
+        spawnTimer += Time.deltaTime;
+        if(spawnTimer > enemySpawnInterval)
         {
-            timer -= enemySpawnInterval;
+            spawnTimer -= enemySpawnInterval;
             SpawnEnemy(0, RandomOffscreenPos());
         }
     }
@@ -32,9 +33,17 @@ public class EnemyManager : MonoBehaviour
         GameObject go = Instantiate(EnemyTypes[enemyType], pos, Quaternion.identity, transform);
         EnemyController em = go.GetComponent<EnemyController>();
         em.Initialize(this);
-        go.name = go.name + "(" + enemyCount + ")";
-        enemyCount++;
+        go.name = go.name + "(" + totalEnemiesSpawned + ")";
+        totalEnemiesSpawned++;
         EnemyList.Add(em);
+    }
+
+    public void SpawnEnemies(int enemyType, int amount, Vector3 position)
+    {
+        for(int i = 0; i < amount; i++)
+        {
+            SpawnEnemy(enemyType, position);
+        }
     }
 
     public void RemoveEnemy(EnemyController enemy)
