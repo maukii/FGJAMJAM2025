@@ -12,8 +12,8 @@ public class EnemyManager : MonoBehaviour
     public int TotalEnemiesSpawned { get { return totalEnemiesSpawned; } }
     public EnemyController[] EnemyControllers { get { return EnemyList.ToArray(); } }
 
-    float minX = -50, maxX;
-    float minY = -50, maxY;
+    float minX, maxX;
+    float minY, maxY;
 
     void Update()
     {
@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
         if(spawnTimer > enemySpawnInterval)
         {
             spawnTimer -= enemySpawnInterval;
-            SpawnEnemy(0, RandomOffscreenPos());
+            SpawnEnemy(1, RandomOffscreenPos());
         }
     }
 
@@ -54,48 +54,50 @@ public class EnemyManager : MonoBehaviour
     private Vector3 RandomOffscreenPos()
     {
         Vector3 returnPos = Vector3.zero;
-        int rand = Random.Range(0, 4);
+        
+        // Set minX and minY according to screen width and height, give 50px leeway
+        minX = -50; minY = -50;
         maxX = Screen.width + 50;
         maxY = Screen.height + 50;
-        float x = 0;
-        float y= 0;
+
+        // rand determines which side of the screen the enemy spawns in
+        // 0: left
+        // 1: top
+        // 2: right
+        // 3: bottom
+        int rand = Random.Range(0, 4);
+
+        // Vector that's passed to ScreenPointToRay to create a ray
+        Vector3 screenRayPos = Vector3.zero;
+
         switch(rand)
         {
             case 0:
-                x = 0;
-                y = Random.Range(minY, maxY);
+                screenRayPos.x = 0;
+                screenRayPos.y = Random.Range(minY, maxY);
                 break;
             case 1:
-                x = Random.Range(minX, maxX);
-                y = Screen.height;
+                screenRayPos.x = Random.Range(minX, maxX);
+                screenRayPos.y = Screen.height;
                 break;
             case 2:
-                x = Screen.width;
-                y = Random.Range(minY, maxY);
+                screenRayPos.x = Screen.width;
+                screenRayPos.y = Random.Range(minY, maxY);
                 break;
             case 3:
-                x = Random.Range(minX, maxX);
-                y = 0;
+                screenRayPos.x = Random.Range(minX, maxX);
+                screenRayPos.y = 0;
                 break;
         }
-        Vector3 pos = new Vector3(x, y, 0);
 
-
-        //Vector2 mousePosition = Mouse.current.position.ReadValue();
-        Ray ray = Camera.main.ScreenPointToRay(pos);
+        Ray ray = Camera.main.ScreenPointToRay(screenRayPos);
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
         {
-            Debug.Log("hit.point = " + hit.point);
+            //Debug.Log("hit.point = " + hit.point);
             returnPos = hit.point;
-            //Vector3 lookDirection = targetPoint - transform.position;
-            //lookDirection.y = 0f;
-            //Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
         return returnPos;
-        //Debug.Log(pos);
-        //return Camera.main.ScreenToWorldPoint(pos);
     }
 }

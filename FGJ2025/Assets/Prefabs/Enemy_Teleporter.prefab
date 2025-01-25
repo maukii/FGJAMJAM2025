@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5176836866491703842}
   - component: {fileID: 6458262530365034336}
-  - component: {fileID: 7163325869553530895}
+  - component: {fileID: 5601405509787379367}
   - component: {fileID: 1165658857638897013}
   m_Layer: 0
   m_Name: Enemy_Teleporter
@@ -57,7 +57,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &7163325869553530895
+--- !u!114 &5601405509787379367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,11 +66,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2838264468759800263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 276e805f1a030c542864b2e35be42317, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ce7d8762af4b2b448d3a72593518d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mSpeed: 1.5
-  rSpeed: 2
+  mSpeed: 0
+  rSpeed: 10
   pushForce: 1
 --- !u!114 &1165658857638897013
 MonoBehaviour:
