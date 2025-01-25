@@ -64,7 +64,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Dissolve: 0
-    - _DissolveExpand: 0.994
+    - _DissolveExpand: 1.4
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Wobble: 11.18
