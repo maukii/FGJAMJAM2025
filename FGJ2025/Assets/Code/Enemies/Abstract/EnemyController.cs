@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public abstract class EnemyController : MonoBehaviour
 {
-    private EnemyManager enemyManager;
+    protected EnemyManager enemyManager;
     protected Health health;
     protected Animator animator;
 
@@ -12,7 +12,6 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] protected float rSpeed = 1f;
     protected Vector3 newPos; // Calculate new position into this before passing it into transform.position
     protected Vector3 target = Vector3.zero; // this is probably always playerpos
-    protected GameObject playerGO;
     protected bool animMoving;
 
     // For collision distance calculations

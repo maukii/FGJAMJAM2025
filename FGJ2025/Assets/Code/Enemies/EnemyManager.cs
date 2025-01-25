@@ -23,7 +23,9 @@ public class EnemyManager : MonoBehaviour
     float minY, maxY;
 
     GameObject playerGO;
+    Health playerHealth;
     public GameObject PlayerGO { get { return playerGO; } }
+    public Health PlayerHealth { get { return playerHealth; } }
 
     void Update()
     {
@@ -43,6 +45,7 @@ public class EnemyManager : MonoBehaviour
     void FindPlayer()
     {
         playerGO = GameObject.FindGameObjectWithTag("Player");
+        playerHealth = playerGO.GetComponent<Health>();
     }
 
     public void SpawnEnemy(int enemyType, Vector3 position)
