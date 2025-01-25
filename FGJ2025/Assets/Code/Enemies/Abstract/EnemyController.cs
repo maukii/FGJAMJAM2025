@@ -19,6 +19,9 @@ public abstract class EnemyController : MonoBehaviour
     float closeDist = 1f;
     [SerializeField] float pushForce = 1f;
 
+    // For attacking
+    protected bool attacking = false;
+
     void OnEnable()
     {
         health = GetComponent<Health>();
@@ -39,6 +42,11 @@ public abstract class EnemyController : MonoBehaviour
         HandleEnemyCollisions();
         HandleRotation();
         HandleMovement();
+
+        if(CanAttack())
+        {
+            Attack();
+        }
 
         // Set Y to 0 so the enemy is never under or above ground level
         newPos.y = 0;
@@ -88,4 +96,8 @@ public abstract class EnemyController : MonoBehaviour
     protected abstract void HandleRotation();
 
     protected abstract void HandleMovement();
+
+    protected abstract bool CanAttack();
+
+    protected abstract void Attack();
 }

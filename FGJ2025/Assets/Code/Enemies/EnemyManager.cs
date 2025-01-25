@@ -31,7 +31,7 @@ public class EnemyManager : MonoBehaviour
         if(spawnTimer > enemySpawnInterval)
         {
             spawnTimer -= enemySpawnInterval;
-            SpawnEnemy(1, RandomOffscreenPos());
+            SpawnEnemy(Random.Range(0, EnemyTypes.Length), RandomOffscreenPos());
         }
     }
 

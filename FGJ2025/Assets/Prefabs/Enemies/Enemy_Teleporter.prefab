@@ -72,6 +72,9 @@ MonoBehaviour:
   mSpeed: 0
   rSpeed: 10
   pushForce: 1
+  ProjectilePrefab: {fileID: 3754568191777873812, guid: 5f54360f1a7272847bb9de52b17684d2, type: 3}
+  teleportInterval: 5
+  teleportDistance: 5
 --- !u!114 &1165658857638897013
 MonoBehaviour:
   m_ObjectHideFlags: 0

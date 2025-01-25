@@ -206,6 +206,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2477442541235169572, guid: 92b94906a124b7c4dbd32f40af899a4b, type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1300000945}
     - target: {fileID: 7109747673685264722, guid: 92b94906a124b7c4dbd32f40af899a4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -250,6 +254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9039210128952420876, guid: 92b94906a124b7c4dbd32f40af899a4b, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -259,6 +267,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7109747673685264722, guid: 92b94906a124b7c4dbd32f40af899a4b, type: 3}
   m_PrefabInstance: {fileID: 1228826672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1300000945 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2317873342583158552, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
+  m_PrefabInstance: {fileID: 3778069740637066184}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339619084
 GameObject:

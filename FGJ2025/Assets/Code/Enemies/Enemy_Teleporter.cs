@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class Enemy_Teleporter : EnemyController
 {
+    [Header("Assign this prefab in inspector")]
+    public GameObject ProjectilePrefab;
+
     float teleportTimer = 0f;
+    [Header("Teleport variables")]
     [SerializeField] float teleportInterval = 5f;
     [SerializeField] float teleportDistance = 5f;
+
+    float attackTimer = 0f;
+    float attackInterval = 3f;
 
     bool initialTeleport = false;
 
@@ -51,5 +58,28 @@ public class Enemy_Teleporter : EnemyController
         randomDir.x = unitCircle.x;
         randomDir.z = unitCircle.y;
         newPos = target + randomDir * teleportDistance;
+
+        // Reset attack timer on teleport
+        attackTimer = 0f;
+    }
+
+    protected override bool CanAttack()
+    {
+        // Update attack cooldown, return true if it is time to attack
+        attackTimer += Time.deltaTime;
+        if(attackTimer >= attackInterval)
+        {
+            attackTimer = 0f;
+            return true;
+        }
+
+        return false;
+    }
+
+    protected override void Attack()
+    {
+        GameObject go = Instantiate(ProjectilePrefab, transform.position, Quaternion.identity);
+        Projectile projectile = go.GetComponent<Projectile>();
+        projectile.Initialize(LayerMask.NameToLayer("Player"), 10, 5f, transform.forward);
     }
 }
