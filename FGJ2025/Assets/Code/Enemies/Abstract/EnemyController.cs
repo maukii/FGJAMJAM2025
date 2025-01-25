@@ -11,6 +11,7 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField] protected float rSpeed = 1f;
     protected Vector3 newPos; // Calculate new position into this before passing it into transform.position
     protected Vector3 target = Vector3.zero; // todo: this is probably always playerpos
+    protected GameObject playerGO;
 
     // For collision distance calculations
     Vector3 offset;
@@ -33,6 +34,8 @@ public abstract class EnemyController : MonoBehaviour
     {
         newPos = transform.position;
 
+        UpdateTargetPos();
+
         HandleEnemyCollisions();
         HandleRotation();
         HandleMovement();
@@ -53,7 +56,7 @@ public abstract class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void HandleEnemyCollisions()
+    protected virtual void HandleEnemyCollisions()
     {
         // Optimization idea: Run this x amount of times per frame from EnemyManager, on x amount of EnemyControllers
         // x = 10, 60fps, 60enemies = 10*60 runs per second, 6 frames (.1 seconds) to run this on every enemy
@@ -71,6 +74,14 @@ public abstract class EnemyController : MonoBehaviour
                 //Debug.Log("Collision between: " + gameObject.name + " and " + em.gameObject.name);
                 newPos += (transform.position - em.transform.position).normalized * pushForce * Time.deltaTime;
             }
+        }
+    }
+
+    protected virtual void UpdateTargetPos()
+    {
+        if(enemyManager.PlayerGO)
+        {
+            target = enemyManager.PlayerGO.transform.position;
         }
     }
 

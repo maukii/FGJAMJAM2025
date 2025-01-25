@@ -4,16 +4,26 @@ using UnityEngine.InputSystem;
 
 public class EnemyManager : MonoBehaviour
 {
+    [Header("Assign these prefabs in the inspector")]
     public GameObject[] EnemyTypes;
+
+    [Header("SerializeFields")]
+    // Spawner variables
     [SerializeField] private float spawnTimer;
     [SerializeField] private float enemySpawnInterval;
+
+    // For keeping track of enemies
     [SerializeField] List<EnemyController> EnemyList = new List<EnemyController>();
     [SerializeField] int totalEnemiesSpawned = 0;
     public int TotalEnemiesSpawned { get { return totalEnemiesSpawned; } }
     public EnemyController[] EnemyControllers { get { return EnemyList.ToArray(); } }
 
+    // For screen positions
     float minX, maxX;
     float minY, maxY;
+
+    GameObject playerGO;
+    public GameObject PlayerGO { get { return playerGO; } }
 
     void Update()
     {
@@ -23,6 +33,16 @@ public class EnemyManager : MonoBehaviour
             spawnTimer -= enemySpawnInterval;
             SpawnEnemy(1, RandomOffscreenPos());
         }
+    }
+
+    void Start()
+    {
+        FindPlayer();
+    }
+
+    void FindPlayer()
+    {
+        playerGO = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void SpawnEnemy(int enemyType, Vector3 position)

@@ -3,8 +3,8 @@ using UnityEngine;
 public class Enemy_Teleporter : EnemyController
 {
     float teleportTimer = 0f;
-    float teleportInterval = 5f;
-    float teleportDistance = 5f;
+    [SerializeField] float teleportInterval = 5f;
+    [SerializeField] float teleportDistance = 5f;
 
     bool initialTeleport = false;
 
@@ -39,12 +39,13 @@ public class Enemy_Teleporter : EnemyController
         Vector3 targetDir = target - transform.position;
         float singleStep = rSpeed * Time.deltaTime;
         Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, singleStep, 0.0f);
+        newDir.y = 0f;
         transform.rotation = Quaternion.LookRotation(newDir);
     }
 
     void Teleport()
     {
-        Debug.Log(gameObject.name + " teleported");
+        //Debug.Log(gameObject.name + " teleported");
         Vector2 unitCircle = Random.insideUnitCircle.normalized;
         Vector3 randomDir = Vector3.zero;
         randomDir.x = unitCircle.x;
