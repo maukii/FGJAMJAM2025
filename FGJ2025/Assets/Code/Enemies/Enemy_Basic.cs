@@ -56,6 +56,6 @@ public class Enemy_Basic : EnemyController
         base.Attack();
         onCooldown = true;
         cooldownTimer = 0f;
-        // Play attack animation, player takes damage
+        enemyManager.PlayerHealth.TakeDamage(1);
     }
 }
