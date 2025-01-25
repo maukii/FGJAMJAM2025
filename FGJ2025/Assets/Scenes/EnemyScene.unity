@@ -1931,11 +1931,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8312195032462787665, guid: 92b94906a124b7c4dbd32f40af899a4b, type: 3}
+      propertyPath: currentWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 72d21dac25687e440ad65b7ff9a187a3, type: 2}
     - target: {fileID: 9039210128952420876, guid: 92b94906a124b7c4dbd32f40af899a4b, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4184420609613646880, guid: 92b94906a124b7c4dbd32f40af899a4b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
