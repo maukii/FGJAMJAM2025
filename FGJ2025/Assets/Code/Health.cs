@@ -4,6 +4,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public GameObject BubblePrefab;
+    public Transform BubbleCenterPos;
     private GameObject bubbleGO;
 
     [SerializeField] bool canBubble = true;
@@ -57,6 +58,10 @@ public class Health : MonoBehaviour
     {
         isBubbled = true;
         bubbleGO = Instantiate(BubblePrefab, transform);
+        if(BubbleCenterPos)
+        {
+            bubbleGO.transform.position = BubbleCenterPos.position;
+        }
         OnBubbled?.Invoke();
     }
 
