@@ -132,6 +132,10 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _WobbbleIntensity: 0.29
+    - _WobbleOverTimeIntensity: 0.153
+    - _WobbleOverTimeSpeed: 2.07
+    - _WobbleScale: 0.48
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
