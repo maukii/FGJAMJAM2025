@@ -3,10 +3,10 @@ using DG.Tweening;
 
 public class CameraShaker : MonoBehaviour
 {
-    public static CameraShaker instance;
+    public static CameraShaker Instance;
 
 
-    void Awake() => instance = this;
+    void Awake() => Instance = this;
 
     public void Shake(float duration, float force = 0.1f, int vibrato = 10, int elasticity = 1, Ease easing = Ease.Unset)
     {
