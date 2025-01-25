@@ -3,10 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public AudioClip MainMenuMusic;
     public GameObject MainViewParent, OptionsParent;
+
+    void Start()
+    {
+        AudioManager.Instance.PlayMusic(MainMenuMusic);
+        ButtonToMainView();
+    }
 
     public void ButtonNewGame()
     {
+        AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(1);
     }
 
