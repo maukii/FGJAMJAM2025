@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ExperienceDrop : MonoBehaviour
 {
+    PlayerExperience playerExperience;
+
     Transform target;
     Vector3 initialPos;
     bool homing = false;
@@ -10,13 +12,14 @@ public class ExperienceDrop : MonoBehaviour
     float lerpT = 0f;
     [SerializeField] float lerpDuration = .5f;
 
-    [SerializeField] int expValue = 1;
+    public int ExpValue = 1;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             HomeIn(other.transform);
+            playerExperience = other.GetComponent<PlayerExperience>();
             homing = true;
         }
     }
@@ -38,6 +41,7 @@ public class ExperienceDrop : MonoBehaviour
                 // Reached target
                 Destroy(gameObject);
                 // todo: add expValue
+                playerExperience.AddExperience(ExpValue);
             }
         }
     }

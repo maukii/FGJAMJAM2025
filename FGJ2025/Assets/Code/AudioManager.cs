@@ -110,6 +110,13 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
+        _soundAS.pitch = 1f;
+        _soundAS.PlayOneShot(clip);
+    }
+
+    public void PlaySound(AudioClip clip, float pitch)
+    {
+        _soundAS.pitch = pitch;
         _soundAS.PlayOneShot(clip);
     }
 

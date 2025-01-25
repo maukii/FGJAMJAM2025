@@ -414,6 +414,8 @@ GameObject:
   - component: {fileID: 3897245373805283648}
   - component: {fileID: 8312195032462787665}
   - component: {fileID: 8033330620797851648}
+  - component: {fileID: 6247143236707228454}
+  - component: {fileID: 3076798628028480305}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -429,7 +431,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9039210128952420876}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.13052596, y: -0, z: -0, w: 0.99144495}
+  m_LocalRotation: {x: -0.13052624, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 0.42492914, z: 0.27318788}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -663,6 +665,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6247143236707228454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039210128952420876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5bcdee4af809f34d9e0361287f130af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpGetAudio: {fileID: 8300000, guid: a9afed3c6d84ef84eb6eceac825421ff, type: 3}
+--- !u!114 &3076798628028480305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039210128952420876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac534cfb221b1748a1e2d6034bc90af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BubblePrefab: {fileID: 0}
+  BubbleCenterPos: {fileID: 0}
+  canBubble: 0
+  maxHealth: 5
 --- !u!1001 &4151831315657930949
 PrefabInstance:
   m_ObjectHideFlags: 0

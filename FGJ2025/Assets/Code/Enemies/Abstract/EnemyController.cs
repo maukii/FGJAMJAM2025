@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public abstract class EnemyController : MonoBehaviour
 {
+    public GameObject ExperiencePrefab;
+
     protected EnemyManager enemyManager;
     protected Health health;
     protected Animator animator;
@@ -69,6 +71,7 @@ public abstract class EnemyController : MonoBehaviour
 
     protected void Die()
     {
+        Instantiate(ExperiencePrefab, transform.position, Quaternion.identity);
         enemyManager.RemoveEnemy(this);
         Destroy(gameObject);
     }
