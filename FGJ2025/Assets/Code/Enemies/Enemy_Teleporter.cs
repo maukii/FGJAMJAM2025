@@ -83,6 +83,6 @@ public class Enemy_Teleporter : EnemyController
         base.Attack();
         GameObject go = Instantiate(ProjectilePrefab, transform.position, Quaternion.identity);
         Projectile projectile = go.GetComponent<Projectile>();
-        projectile.Initialize(LayerMask.NameToLayer("Player"), 10, 5f, transform.forward);
+        projectile.Initialize(LayerMask.NameToLayer("Player"), 1, 5f, transform.forward);
     }
 }

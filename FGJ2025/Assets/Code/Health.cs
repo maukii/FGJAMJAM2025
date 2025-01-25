@@ -6,9 +6,11 @@ public class Health : MonoBehaviour
     public GameObject BubblePrefab;
     private GameObject bubbleGO;
 
+    [SerializeField] bool canBubble = true;
     [SerializeField] int maxHealth = 100;
     
     public bool IsBubbled => isBubbled;
+    public event Action<int, int> OnHealthChanged;
     public event Action OnTakeDamage;
     public event Action OnBubbled;
     public event Action OnDeath;
@@ -20,7 +22,11 @@ public class Health : MonoBehaviour
 
     void Start() => SetFullHealth();
 
-    public void SetFullHealth() => currentHealth = maxHealth;
+    public void SetFullHealth()
+    {
+        currentHealth = maxHealth;
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
 
     public void TakeDamage(int damageAmount)
     {
@@ -31,7 +37,7 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0 && !isDead)
         {
-            if (!isBubbled)
+            if (!isBubbled && canBubble)
             {
                 Bubble();
                 return;
@@ -44,6 +50,7 @@ public class Health : MonoBehaviour
         }
         
         OnTakeDamage?.Invoke();
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
     void Bubble()

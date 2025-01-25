@@ -168,4 +168,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   lifeTime: 5
-  damage: 10
+  damage: 1
+  deathParticles: {fileID: 0}
