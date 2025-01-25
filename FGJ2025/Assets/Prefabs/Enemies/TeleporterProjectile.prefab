@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1282541164817637527}
   - component: {fileID: 2739903327762279291}
   - component: {fileID: 3392353987579872087}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,8 @@ GameObject:
   - component: {fileID: 220573518246306556}
   - component: {fileID: 6533359419365656888}
   - component: {fileID: 7395010142834401063}
-  m_Layer: 0
+  - component: {fileID: 6518621399688366539}
+  m_Layer: 7
   m_Name: TeleporterProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +167,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955c9c19979c42c47bbca1b84e98e60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
   lifeTime: 5
   damage: 1
   deathParticles: {fileID: 0}
+--- !u!54 &6518621399688366539
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754568191777873812}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2

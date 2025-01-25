@@ -5,15 +5,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class UpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] float hoverScale = 1.1f;
-    [SerializeField] float scaleDuration = 0.2f;
+    [SerializeField] float hoverScale = 1.25f;
+    [SerializeField] float scaleDuration = 0.25f;
 
     [SerializeField] TextMeshProUGUI upgradeNameLabel;
     [SerializeField] TextMeshProUGUI upgradeDescriptionLabel;
     [SerializeField] Image upgradeBackground;
-    [SerializeField] Image upgradeIcon;
 
 
     public event Action<UpgradeData> UpgradeOptionSelected;
@@ -28,8 +27,7 @@ public class UpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         
         upgradeNameLabel.SetText(upgradeData.upgradeName);
         upgradeDescriptionLabel.SetText(upgradeData.description);
-        //upgradeBackground
-        upgradeIcon.sprite = upgradeData.icon;
+        upgradeBackground.sprite = upgradeData.icon;
     }
 
     public void ToggleAllowInput(bool state) => allowInput = state;
@@ -38,10 +36,10 @@ public class UpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (!allowInput) return;
 
-        transform.DOScale(hoverScale, scaleDuration).SetEase(Ease.OutBack);
+        transform.DOScale(hoverScale, scaleDuration).SetEase(Ease.InOutBounce).SetUpdate(true);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnButtonClicked()
     {
         if (!allowInput) return;
 
@@ -52,6 +50,6 @@ public class UpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (!allowInput) return;
 
-        transform.DOScale(1f, scaleDuration).SetEase(Ease.OutBack);
+        transform.DOScale(1f, scaleDuration).SetEase(Ease.InOutBounce).SetUpdate(true);
     }
 }

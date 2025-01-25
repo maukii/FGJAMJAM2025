@@ -55,11 +55,14 @@ public class UpgradesHandler : MonoBehaviour
     
     void OnPlayerLeveledUp()
     {
+        GameStateManager.Instance.SetGameState(GameState.LevelingUp);
+
         UpgradeData[] selectableOptions = GetRandomUpgrades();
 
         for (int i = 0; i < upgradeOptions.Length; i++)
             upgradeOptions[i].SetUpgradeData(selectableOptions[i]);
 
+        Time.timeScale = 0f;
         ShowUpgradesUI();
     }
 
@@ -82,7 +85,7 @@ public class UpgradesHandler : MonoBehaviour
     {
         upgradesCanvas.gameObject.SetActive(true);
 
-        Sequence sequence = DOTween.Sequence();
+        Sequence sequence = DOTween.Sequence().SetUpdate(true);
 
         sequence.Append(upgradesUICanvasGroup.DOFade(1, 0.15f));
         sequence.Append(upgradesAreaCanvasGroup.DOFade(1, 0.25f));
@@ -103,7 +106,7 @@ public class UpgradesHandler : MonoBehaviour
 
     void HideUpgradesUI()
     {
-        Sequence sequence = DOTween.Sequence();
+        Sequence sequence = DOTween.Sequence().SetUpdate(true);
 
         sequence.Append(upgradersArea.DOScale(0, 0.25f).SetEase(Ease.InBack));
         sequence.Append(upgradesUICanvasGroup.DOFade(0, 0.25f));
@@ -120,6 +123,9 @@ public class UpgradesHandler : MonoBehaviour
 
             upgradesCanvas.gameObject.SetActive(false);
         });
+
+        Time.timeScale = 1f;
+        GameStateManager.Instance.SetGameState(GameState.Playing);
     }
 
     void OnUpgradeOptionSelected(UpgradeData upgradeData)

@@ -641,6 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50599e0b7249c0c4991c58dac6dd15be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentWeapon: {fileID: 11400000, guid: 72d21dac25687e440ad65b7ff9a187a3, type: 2}
   meleeHitPoint: {fileID: 3398253261038528122}
   meleeHitSize: 3
   targetedLayermask:

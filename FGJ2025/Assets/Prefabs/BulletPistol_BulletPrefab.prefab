@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955c9c19979c42c47bbca1b84e98e60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 5
-  damage: 10
+  lifeTime: 2
+  damage: 1
   deathParticles: {fileID: 3445376766341508882, guid: 3d7b82509d0d7b992be17f46f3d94217, type: 3}
 --- !u!135 &5883794135964289655
 SphereCollider:
@@ -65,11 +65,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &545761171649546527
 Rigidbody:
