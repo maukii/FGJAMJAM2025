@@ -17,7 +17,7 @@ public class PlayerWeapon : MonoBehaviour
 
     void HandleShooting()
     {
-        if (inputHandler.IsShooting && Time.time >= nextFireTime)
+        if (inputHandler.BubbleMelee && Time.time >= nextFireTime)
             Shoot();
     }
 

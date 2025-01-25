@@ -567,6 +567,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54be22e4-8542-4060-84cf-a502e20de66e
+    m_ActionName: 'Player/StabMelee[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -612,6 +616,7 @@ MonoBehaviour:
   baseMovementSpeed: 5
   rotationSpeed: 15
   cameraTransform: {fileID: 0}
+  anim: {fileID: 8033330620797851648}
 --- !u!114 &3897245373805283648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,6 +648,7 @@ MonoBehaviour:
     m_Bits: 128
   meleeHitCooldown: 0.5
   baseDamage: 1
+  anim: {fileID: 8033330620797851648}
 --- !u!95 &8033330620797851648
 Animator:
   serializedVersion: 7
