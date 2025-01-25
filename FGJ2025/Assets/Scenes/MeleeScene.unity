@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08dd7525a6370414a8dd63e8f0b65bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  baseMovementSpeed: 5
   rotationSpeed: 15
   cameraTransform: {fileID: 1035652070}
 --- !u!4 &1728148524
@@ -1101,6 +1101,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   meleeHitCooldown: 0.5
+  baseDamage: 1
 --- !u!1 &2031956308
 GameObject:
   m_ObjectHideFlags: 0
