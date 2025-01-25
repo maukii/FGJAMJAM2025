@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6458262530365034336}
   - component: {fileID: 7163325869553530895}
   - component: {fileID: 1165658857638897013}
+  - component: {fileID: 2449361972948665080}
   m_Layer: 7
   m_Name: Enemy_Basic
   m_TagString: Untagged
@@ -90,6 +91,19 @@ MonoBehaviour:
   BubbleCenterPos: {fileID: 9165495978946032961}
   canBubble: 1
   maxHealth: 1
+--- !u!114 &2449361972948665080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838264468759800263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c90fb6e7ab398c45be068ab23a330ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 6659241169772512110, guid: 3d7b82509d0d7b992be17f46f3d94217, type: 3}
 --- !u!1 &3887965347188982975
 GameObject:
   m_ObjectHideFlags: 0

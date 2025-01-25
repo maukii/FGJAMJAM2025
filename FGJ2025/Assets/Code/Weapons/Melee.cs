@@ -51,8 +51,7 @@ public class Melee : MonoBehaviour
             var health = hit.GetComponent<Health>();
             if (health != null && health.IsBubbled)
             {
-                // TODO::
-                // Pop the bubble
+                health.TakeDamage(1);
             }
         }
 
