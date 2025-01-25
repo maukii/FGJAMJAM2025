@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 5
   damage: 10
+  deathParticles: {fileID: 3445376766341508882, guid: 3d7b82509d0d7b992be17f46f3d94217, type: 3}
 --- !u!135 &5883794135964289655
 SphereCollider:
   m_ObjectHideFlags: 0
