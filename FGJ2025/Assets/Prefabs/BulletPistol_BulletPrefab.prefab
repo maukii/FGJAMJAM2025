@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955c9c19979c42c47bbca1b84e98e60a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 2
+  lifeTime: 0.9
   damage: 1
   deathParticles: {fileID: 3445376766341508882, guid: 3d7b82509d0d7b992be17f46f3d94217, type: 3}
 --- !u!135 &5883794135964289655
@@ -69,7 +69,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.75
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &545761171649546527
 Rigidbody:
@@ -80,7 +80,7 @@ Rigidbody:
   m_GameObject: {fileID: 3445376766341508882}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 5
+  m_Drag: 2.9
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
