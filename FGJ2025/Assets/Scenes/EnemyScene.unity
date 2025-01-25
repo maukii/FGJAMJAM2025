@@ -1041,31 +1041,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2317873342583158552, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12
+      value: 85.2
       objectReference: {fileID: 0}
     - target: {fileID: 2317873342583158552, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7
+      value: -83.8
       objectReference: {fileID: 0}
     - target: {fileID: 2317873342583158552, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8660259
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 2317873342583158552, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.49999917
+      value: 0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 2317873342583158552, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2317873342583158552, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2317873342583158552, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 60
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 2317873342583158552, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1079,6 +1079,10 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 1228826673}
+    - target: {fileID: 8816121284092617631, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
+      propertyPath: field of view
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
