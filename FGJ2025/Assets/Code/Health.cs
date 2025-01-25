@@ -35,6 +35,8 @@ public class Health : MonoBehaviour
 
         currentHealth -= damageAmount;
         currentHealth = Mathf.Max(currentHealth, 0);
+        OnTakeDamage?.Invoke();
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (currentHealth <= 0 && !isDead)
         {
@@ -48,10 +50,7 @@ public class Health : MonoBehaviour
                 Die();
                 return;
             }
-        }
-        
-        OnTakeDamage?.Invoke();
-        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        } 
     }
 
     void Bubble()
