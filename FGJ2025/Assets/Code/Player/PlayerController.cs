@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float baseMovementSpeed = 5f;
     [SerializeField] float rotationSpeed = 10f;
     [SerializeField] Transform cameraTransform;
+    [SerializeField] Animator anim;
 
     CharacterController characterController;
     PlayerInputHandler inputHandler;
+    Melee melee;
 
 
     void Awake()
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
         characterController = GetComponent<CharacterController>();
         inputHandler = GetComponent<PlayerInputHandler>();
+        melee = GetComponent<Melee>();
     }
 
     void Update()
@@ -43,6 +46,8 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = (forward * inputHandler.MoveInput.y + right * inputHandler.MoveInput.x).normalized;
         float movementSpeed = baseMovementSpeed + UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.PlayerMovementSpeed);
         characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
+
+        anim.SetBool("IsMoving", inputHandler.MoveInput.magnitude != 0f);
     }
 
     void GroundPlayer()

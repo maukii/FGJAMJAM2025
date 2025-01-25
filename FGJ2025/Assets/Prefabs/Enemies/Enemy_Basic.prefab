@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276e805f1a030c542864b2e35be42317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExperiencePrefab: {fileID: 3358859044929218234, guid: 50d5703e691e3754eb80a22627994754, type: 3}
   mSpeed: 1.5
   rSpeed: 2
   pushForce: 1
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BubblePrefab: {fileID: 2131268268808720036, guid: ff06f12ed89034c4db0bd8c8e8678c4f, type: 3}
   BubbleCenterPos: {fileID: 9165495978946032961}
+  canBubble: 1
   maxHealth: 1
 --- !u!1 &3887965347188982975
 GameObject:
