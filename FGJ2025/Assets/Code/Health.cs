@@ -18,7 +18,9 @@ public class Health : MonoBehaviour
     bool isBubbled = false;
 
 
-    void Awake() => currentHealth = maxHealth;
+    void Start() => SetFullHealth();
+
+    public void SetFullHealth() => currentHealth = maxHealth;
 
     public void TakeDamage(int damageAmount)
     {

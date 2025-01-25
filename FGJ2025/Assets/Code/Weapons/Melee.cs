@@ -6,6 +6,10 @@ public class Melee : MonoBehaviour
     [SerializeField] float meleeHitSize = 3f;
     [SerializeField] LayerMask targetedLayermask;
     [SerializeField] float meleeHitCooldown = 0.5f;
+    [SerializeField] int baseDamage = 1;
+    
+
+    int Damage => baseDamage + (int)UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.Damage);
 
     float nextHitTime = 0;
     PlayerInputHandler inputHandler;
@@ -26,10 +30,10 @@ public class Melee : MonoBehaviour
         {
             var health = hit.GetComponent<Health>();
             if (health != null && !health.IsBubbled)
-                health.TakeDamage(1);
+                health.TakeDamage(Damage);
         }
 
-        nextHitTime = Time.time + meleeHitCooldown;
+        nextHitTime = Time.time + Mathf.Max(0, meleeHitCooldown - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.AttackRate));
     }
 
     void OnDrawGizmos()

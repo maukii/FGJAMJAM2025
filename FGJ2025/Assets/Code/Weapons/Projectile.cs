@@ -7,9 +7,21 @@ public class Projectile : MonoBehaviour
     [SerializeField] int damage = 10;
     int layer;
 
+    /// Game object to spawn when this projectile is destroyed.
+    public GameObject deathParticles;
+
     void Start()
     {
         Destroy(gameObject, lifeTime);
+    }
+
+    void OnDestroy()
+    {
+	    if (deathParticles != null) {
+		    GameObject particles = Instantiate(deathParticles);
+		    particles.transform.position = transform.position;
+		    particles.transform.rotation = transform.rotation;
+	    }
     }
 
     void Update()

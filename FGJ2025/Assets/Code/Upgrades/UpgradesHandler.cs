@@ -1,9 +1,20 @@
 using UnityEngine;
 using DG.Tweening;
-using System;
+using System.Collections.Generic;
+
+public enum UpgradeType
+{
+    Damage,
+    AttackRate,
+    PlayerMovementSpeed,
+    Heal,
+}
 
 public class UpgradesHandler : MonoBehaviour
 {
+    public static UpgradesHandler Instance;
+
+    [SerializeField] List<UpgradeData> allUpgrades = new List<UpgradeData>();
     [SerializeField] Canvas upgradesCanvas;
     [SerializeField] PlayerExperience playerExperience;
     [SerializeField] CanvasGroup upgradesUICanvasGroup;
@@ -11,10 +22,14 @@ public class UpgradesHandler : MonoBehaviour
     [SerializeField] Transform upgradersArea;
     [SerializeField] UpgradeOption[] upgradeOptions = new UpgradeOption[3];
 
+    Dictionary<UpgradeType, float> activeUpgrades = new Dictionary<UpgradeType, float>();
+
+
+    void Awake() => Instance = this;
 
     void OnEnable()
     {
-        playerExperience.OnPlayerLeveledUp += ShowUpgradesUI;
+        playerExperience.OnPlayerLeveledUp += OnPlayerLeveledUp;
 
         foreach (var option in upgradeOptions)
             option.UpgradeOptionSelected += OnUpgradeOptionSelected;
@@ -22,7 +37,7 @@ public class UpgradesHandler : MonoBehaviour
 
     void OnDisable()
     {
-        playerExperience.OnPlayerLeveledUp -= ShowUpgradesUI;
+        playerExperience.OnPlayerLeveledUp -= OnPlayerLeveledUp;
 
         foreach (var option in upgradeOptions)
             option.UpgradeOptionSelected -= OnUpgradeOptionSelected;
@@ -34,12 +49,34 @@ public class UpgradesHandler : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
-            ShowUpgradesUI();
-
-        if (Input.GetKeyDown(KeyCode.Q))
-            HideUpgradesUI();
+            OnPlayerLeveledUp();
     }
 #endif
+    
+    void OnPlayerLeveledUp()
+    {
+        UpgradeData[] selectableOptions = GetRandomUpgrades();
+
+        for (int i = 0; i < upgradeOptions.Length; i++)
+            upgradeOptions[i].SetUpgradeData(selectableOptions[i]);
+
+        ShowUpgradesUI();
+    }
+
+    UpgradeData[] GetRandomUpgrades()
+    {
+        List<UpgradeData> remainingUpgrades = new List<UpgradeData>(allUpgrades);
+        UpgradeData[] randomUpgrades = new UpgradeData[3];
+
+        for (int i = 0; i < 3; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, remainingUpgrades.Count);
+            randomUpgrades[i] = remainingUpgrades[randomIndex];
+            remainingUpgrades.RemoveAt(randomIndex);
+        }
+
+        return randomUpgrades;
+    }
 
     void ShowUpgradesUI()
     {
@@ -85,20 +122,41 @@ public class UpgradesHandler : MonoBehaviour
         });
     }
 
-    void OnUpgradeOptionSelected()
+    void OnUpgradeOptionSelected(UpgradeData upgradeData)
     {
         foreach (var upgradeOption in upgradeOptions)
         {
             upgradeOption.ToggleAllowInput(false);
         }
 
-        GrantUpgrade();
+        ApplyUpgrade(upgradeData);
         HideUpgradesUI();
     }
 
-    void GrantUpgrade()
+    void ApplyUpgrade(UpgradeData upgrade)
     {
-        // TODO::
-        throw new NotImplementedException();
+        if (upgrade.applyOnce)
+        {
+            switch (upgrade.upgradeType)
+            {
+                case UpgradeType.Damage:
+                case UpgradeType.AttackRate:
+                case UpgradeType.PlayerMovementSpeed:
+                    Debug.LogWarning("Invalid upgrade choise for applyOnce");
+                    return;
+                case UpgradeType.Heal:
+                    PlayerController.Instance.GetComponent<Health>().SetFullHealth();
+                    break;
+            }
+
+            return;
+        }
+
+        if (!activeUpgrades.ContainsKey(upgrade.upgradeType))
+            activeUpgrades[upgrade.upgradeType] = 0f;
+        
+        activeUpgrades[upgrade.upgradeType] += upgrade.value;
     }
+
+    public float GetUpgradeValue(UpgradeType type) => activeUpgrades.ContainsKey(type) ? activeUpgrades[type] : 0f;
 }
