@@ -7,10 +7,12 @@ public class Health : MonoBehaviour
     
     public bool IsBubbled => isDead;
     public event Action OnTakeDamage;
+    public event Action OnBubbled;
     public event Action OnDeath;
     
     int currentHealth;
     bool isDead = false;
+    bool isBubbled = false;
 
 
     void Awake() => currentHealth = maxHealth;
@@ -24,11 +26,25 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0 && !isDead)
         {
-            Die();
-            return;
+            if (!isBubbled)
+            {
+                Bubble();
+                return;
+            }
+            else
+            {
+                Die();
+                return;
+            }
         }
         
         OnTakeDamage?.Invoke();
+    }
+
+    void Bubble()
+    {
+        isBubbled = true;
+        OnBubbled?.Invoke();
     }
 
     void Die()
