@@ -122,9 +122,9 @@ TextureImporter:
       name: upgrade_icon_speed
       rect:
         serializedVersion: 2
-        x: 810
-        y: 301
-        width: 214
+        x: 656
+        y: 291
+        width: 368
         height: 346
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
