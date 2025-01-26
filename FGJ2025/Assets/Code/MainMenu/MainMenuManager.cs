@@ -18,40 +18,22 @@ public class MainMenuManager : MonoBehaviour
     {
         AudioManager.Instance.StopMusic();
         SceneManager.LoadScene(1);
-
-        HideButtonLabels();
     }
 
     public void ButtonToMainView()
     {
         OptionsParent.SetActive(false);
         MainViewParent.SetActive(true);
-
-        ShowButtonLabels(); 
     }
 
     public void ButtonToOptions()
     {
         MainViewParent.SetActive(false);
         OptionsParent.SetActive(true);
-
-        HideButtonLabels();
     }
 
-    public void ButtonToCredits()
+    public void ButtonToQuit()
     {
-        // :D
-
-        HideButtonLabels();
-    }
-
-    void HideButtonLabels()
-    {
-        buttonLabelsGroup.DOFade(0, .25f);
-    }
-
-    void ShowButtonLabels()
-    {
-        buttonLabelsGroup.alpha = 1f;
+        Application.Quit();
     }
 }
