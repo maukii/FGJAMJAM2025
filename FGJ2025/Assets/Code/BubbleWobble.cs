@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class BubbleWobble : MonoBehaviour
 {
@@ -7,10 +8,16 @@ public class BubbleWobble : MonoBehaviour
 
     Vector3 initialLocalPosition;
 
+    public event Action OnDestroyed;
 
     void Awake()
     {
         initialLocalPosition = transform.localPosition;
+    }
+
+    void OnDestroy()
+    {
+	    OnDestroyed?.Invoke();
     }
 
     void Update()
