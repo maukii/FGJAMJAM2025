@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Bonk
   description: Deal more damage
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: cb5a7770732a3a14bb9f947ddecef17b, type: 3}
   upgradeType: 0
   value: 1
   applyOnce: 0

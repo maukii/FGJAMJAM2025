@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Swish swush
   description: Attack faster
-  icon: {fileID: 21300000, guid: 18c160aef92e1bf49bcd00d15bf1f0a1, type: 3}
+  icon: {fileID: 206195707, guid: c17d2172d5b4e564e8b0feca9642c36a, type: 3}
   upgradeType: 1
   value: 1
   applyOnce: 0
