@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &78838201
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3661,12 +3661,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7965401294453707261, guid: d9c0c078ac04060448ca6dab644e6c9b, type: 3}
       propertyPath: EnemyTypes.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7965401294453707261, guid: d9c0c078ac04060448ca6dab644e6c9b, type: 3}
       propertyPath: 'EnemyTypes.Array.data[1]'
       value: 
       objectReference: {fileID: 2838264468759800263, guid: d4f2bd2b3e4baa64dbce4036d91c77b8, type: 3}
+    - target: {fileID: 7965401294453707261, guid: d9c0c078ac04060448ca6dab644e6c9b, type: 3}
+      propertyPath: 'EnemyTypes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2881439967067020224, guid: f27f9785fa3d1a4479e0031626593fde, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
