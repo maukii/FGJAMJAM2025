@@ -8,6 +8,9 @@ public enum UpgradeType
     AttackRate,
     PlayerMovementSpeed,
     Heal,
+    ProjectileSpeed,
+    ProjectileRange,
+    ProjectileCount,
 }
 
 public class UpgradesHandler : MonoBehaviour
@@ -31,17 +34,11 @@ public class UpgradesHandler : MonoBehaviour
     void OnEnable()
     {
         playerExperience.OnPlayerLeveledUp += OnPlayerLeveledUp;
-
-        foreach (var option in upgradeOptions)
-            option.UpgradeOptionSelected += OnUpgradeOptionSelected;
     }
 
     void OnDisable()
     {
         playerExperience.OnPlayerLeveledUp -= OnPlayerLeveledUp;
-
-        foreach (var option in upgradeOptions)
-            option.UpgradeOptionSelected -= OnUpgradeOptionSelected;
     }
 
     void Start() => HideUpgradesUI();
@@ -51,6 +48,16 @@ public class UpgradesHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
             OnPlayerLeveledUp();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            var debugInfo = new System.Text.StringBuilder("Current Active Upgrades:\n");
+            
+            foreach (var upgrade in activeUpgrades)
+                debugInfo.AppendLine($"Upgrade Type: {upgrade.Key}, Value: {upgrade.Value}");
+
+            Debug.Log(debugInfo.ToString());
+        }
     }
 #endif
     
@@ -126,11 +133,10 @@ public class UpgradesHandler : MonoBehaviour
         });
 
         Time.timeScale = 1f;
-        AudioManager.Instance.PlaySound(upgradeChosenAudio);
         GameStateManager.Instance.SetGameState(GameState.Playing);
     }
 
-    void OnUpgradeOptionSelected(UpgradeData upgradeData)
+    public void OnUpgradeOptionSelected(UpgradeData upgradeData)
     {
         foreach (var upgradeOption in upgradeOptions)
         {
@@ -138,6 +144,7 @@ public class UpgradesHandler : MonoBehaviour
         }
 
         ApplyUpgrade(upgradeData);
+        AudioManager.Instance.PlaySound(upgradeChosenAudio);
         HideUpgradesUI();
     }
 
@@ -150,11 +157,17 @@ public class UpgradesHandler : MonoBehaviour
                 case UpgradeType.Damage:
                 case UpgradeType.AttackRate:
                 case UpgradeType.PlayerMovementSpeed:
+                case UpgradeType.ProjectileSpeed:
+                case UpgradeType.ProjectileRange:
                     Debug.LogWarning("Invalid upgrade choise for applyOnce");
-                    return;
+                    break;
                 case UpgradeType.Heal:
                     PlayerController.Instance.GetComponent<Health>().SetFullHealth();
                     break;
+                case UpgradeType.ProjectileCount:
+                    // TODO::
+                    break;
+
             }
 
             return;

@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &6878433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5114975900885202505, guid: 63afb76c2137ae647bbcbaf9241e2c78, type: 3}
+  m_PrefabInstance: {fileID: 957436246}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804e82be84da09048b81bf9f20412e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &78838200
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,6 +769,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3071879840783065240, guid: 89b783efdc09b25418d188ce9323e486, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 6878433}
+    - target: {fileID: 3564677813600685844, guid: 89b783efdc09b25418d188ce9323e486, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 6878433}
     - target: {fileID: 4861694020674327212, guid: 89b783efdc09b25418d188ce9323e486, type: 3}
       propertyPath: m_Name
       value: UpgradeCanvas
@@ -786,6 +805,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -382.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7225892337362785063, guid: 89b783efdc09b25418d188ce9323e486, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 6878433}
     - target: {fileID: 8620248281711183504, guid: 89b783efdc09b25418d188ce9323e486, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1730,9 +1753,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 253786527}
     - target: {fileID: 5114975900885202505, guid: 63afb76c2137ae647bbcbaf9241e2c78, type: 3}
+      propertyPath: allUpgrades.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5114975900885202505, guid: 63afb76c2137ae647bbcbaf9241e2c78, type: 3}
       propertyPath: upgradesAreaCanvasGroup
       value: 
       objectReference: {fileID: 253786526}
+    - target: {fileID: 5114975900885202505, guid: 63afb76c2137ae647bbcbaf9241e2c78, type: 3}
+      propertyPath: 'allUpgrades.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9e87c7575cb55a848a8b443f456eb1aa, type: 2}
+    - target: {fileID: 5114975900885202505, guid: 63afb76c2137ae647bbcbaf9241e2c78, type: 3}
+      propertyPath: 'allUpgrades.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 16e195356cf52ba4386ded113be0f0d1, type: 2}
     - target: {fileID: 5114975900885202505, guid: 63afb76c2137ae647bbcbaf9241e2c78, type: 3}
       propertyPath: 'upgradeOptions.Array.data[0]'
       value: 

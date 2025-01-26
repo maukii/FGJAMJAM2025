@@ -27,7 +27,11 @@ public class PlayerWeapon : MonoBehaviour
         Rigidbody rb = projectileInstance.GetComponent<Rigidbody>();
         
         if (rb != null)
-            rb.linearVelocity = bulletSpawnPoint.forward * currentWeapon.projectileSpeed;
+        {
+            var baseDamping = rb.linearDamping;
+            rb.linearVelocity = bulletSpawnPoint.forward * (currentWeapon.projectileSpeed + UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.ProjectileSpeed));
+            rb.linearDamping = Mathf.Max(0, baseDamping - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.ProjectileRange));
+        }
 
         nextFireTime = Time.time + currentWeapon.fireRate;
     }
