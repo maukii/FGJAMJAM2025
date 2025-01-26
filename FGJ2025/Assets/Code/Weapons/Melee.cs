@@ -38,12 +38,40 @@ public class Melee : MonoBehaviour
 
         Projectile projectileInstance = Instantiate(currentWeapon.projectilePrefab, meleeHitPoint.position, meleeHitPoint.rotation);
         Rigidbody rb = projectileInstance.GetComponent<Rigidbody>();
+        var baseDamping = rb.linearDamping;
         
         if (rb != null)
         {
-            var baseDamping = rb.linearDamping;
             rb.linearVelocity = meleeHitPoint.forward * (currentWeapon.projectileSpeed + UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.ProjectileSpeed));
             rb.linearDamping = Mathf.Max(0, baseDamping - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.ProjectileRange));
+        }
+
+        if (UpgradesHandler.Instance.HasUpgrade(UpgradeType.ProjectileCount))
+        {
+            Quaternion leftRotation = Quaternion.Euler(0, -45, 0); // Rotate -45 degrees around Y-axis
+            Vector3 leftDirection = leftRotation * meleeHitPoint.forward;
+
+            // Instantiate left projectile
+            Projectile leftProjectile = Instantiate(currentWeapon.projectilePrefab, meleeHitPoint.position, Quaternion.LookRotation(leftDirection));
+            Rigidbody leftRb = leftProjectile.GetComponent<Rigidbody>();
+            if (leftRb != null)
+            {
+                leftRb.linearVelocity = leftDirection * (currentWeapon.projectileSpeed + UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.ProjectileSpeed));
+                leftRb.linearDamping = Mathf.Max(0, baseDamping - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.ProjectileRange));
+            }
+
+            // Calculate 45-degree rotation to the right
+            Quaternion rightRotation = Quaternion.Euler(0, 45, 0); // Rotate +45 degrees around Y-axis
+            Vector3 rightDirection = rightRotation * meleeHitPoint.forward;
+
+            // Instantiate right projectile
+            Projectile rightProjectile = Instantiate(currentWeapon.projectilePrefab, meleeHitPoint.position, Quaternion.LookRotation(rightDirection));
+            Rigidbody rightRb = rightProjectile.GetComponent<Rigidbody>();
+            if (rightRb != null)
+            {
+                rightRb.linearVelocity = rightDirection * (currentWeapon.projectileSpeed + UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.ProjectileSpeed));
+                rightRb.linearDamping = Mathf.Max(0, baseDamping - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.ProjectileRange));
+            }
         }
 
         var baseFireRate = currentWeapon.fireRate;
@@ -66,7 +94,6 @@ public class Melee : MonoBehaviour
             {
                 health.TakeDamage(1);
                 AudioManager.Instance.PlayRandomSound(bubblePopAudios, Random.Range(0.9f, 1.1f));
-                CameraShaker.Instance.Shake(0.2f, 0.2f, 10, 1, DG.Tweening.Ease.InOutFlash);
             }
         }
 
