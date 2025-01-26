@@ -14,6 +14,7 @@ public class UpgradesHandler : MonoBehaviour
 {
     public static UpgradesHandler Instance;
 
+    [SerializeField] AudioClip upgradeChosenAudio;
     [SerializeField] List<UpgradeData> allUpgrades = new List<UpgradeData>();
     [SerializeField] Canvas upgradesCanvas;
     [SerializeField] PlayerExperience playerExperience;
@@ -125,6 +126,7 @@ public class UpgradesHandler : MonoBehaviour
         });
 
         Time.timeScale = 1f;
+        AudioManager.Instance.PlaySound(upgradeChosenAudio);
         GameStateManager.Instance.SetGameState(GameState.Playing);
     }
 

@@ -395,6 +395,8 @@ GameObject:
   - component: {fileID: 3076798628028480305}
   - component: {fileID: 5811920132790916145}
   - component: {fileID: 5943205696442032110}
+  - component: {fileID: 4881354925764911547}
+  - component: {fileID: 7485328807764982095}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -632,8 +634,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50599e0b7249c0c4991c58dac6dd15be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shooshAudio: {fileID: 0}
-  bubblePopAudio: {fileID: 0}
+  bubbleMeleeAudios:
+  - {fileID: 8300000, guid: f7d386741e90a9a448e46a229412292a, type: 3}
+  - {fileID: 8300000, guid: 43c6a445ed4b20b4fa507bd65edc76ea, type: 3}
+  - {fileID: 8300000, guid: dd5a6523c2064bf488464692b10129e0, type: 3}
+  bubblePopAudios:
+  - {fileID: 8300000, guid: b0bda5e9b94d0364894a74e0c556210f, type: 3}
+  - {fileID: 8300000, guid: 6d31eabe95762ed4a9a148f059a4f57c, type: 3}
+  - {fileID: 8300000, guid: e02bab563d779394390b6bf48bb8d7e7, type: 3}
   currentWeapon: {fileID: 11400000, guid: 72d21dac25687e440ad65b7ff9a187a3, type: 2}
   meleeHitPoint: {fileID: 3398253261038528122}
   meleeHitSize: 3
@@ -678,6 +686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExpGetAudio: {fileID: 8300000, guid: a9afed3c6d84ef84eb6eceac825421ff, type: 3}
+  levelUpAudio: {fileID: 8300000, guid: 94152c03a8ac77a499c81a1166826443, type: 3}
 --- !u!114 &3076798628028480305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,6 +733,37 @@ MonoBehaviour:
   - {fileID: 8891717201366564490}
   damageFlashMaterial: {fileID: 2100000, guid: 687ec669f22b873419ba7838d914bb8f, type: 2}
   flashDuration: 0.2
+--- !u!114 &4881354925764911547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039210128952420876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720c380dea943d24d9ce8984958886ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.2
+  shakeForce: 0.2
+  vibrato: 10
+  elesticity: 1
+  easing: 35
+--- !u!114 &7485328807764982095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039210128952420876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac1050dd00c74b48b36d01f0a9c69e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 1959144b8861b084dbecdc5315765f7d, type: 3}
 --- !u!1001 &4151831315657930949
 PrefabInstance:
   m_ObjectHideFlags: 0
