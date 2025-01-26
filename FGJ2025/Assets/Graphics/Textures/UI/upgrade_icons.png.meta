@@ -119,13 +119,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: upgrade_icon_attackspeed
+      name: upgrade_icon_speed
       rect:
         serializedVersion: 2
-        x: 276
-        y: 711
-        width: 388
-        height: 313
+        x: 810
+        y: 301
+        width: 214
+        height: 346
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,6 +162,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: upgrade_icon_attackspeed
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 711
+        width: 388
+        height: 313
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59ee0a5110796c84eb2295f767fdfbdd
+      internalID: 265879008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upgrade_icon_attackup
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 679
+        width: 326
+        height: 345
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03e5cf443f804d34cb130ab3ba765028
+      internalID: -432857612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -177,9 +221,10 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       upgrade_bubble: 489968294
-      upgrade_icon_attackspeed: 206195707
+      upgrade_icon_attackspeed: 265879008
+      upgrade_icon_attackup: 959272705
       upgrade_icon_hp: 834677250
-      upgrade_icons_1: 959272705
+      upgrade_icon_speed: 206195707
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
