@@ -11,6 +11,7 @@ public class Melee : MonoBehaviour
     [SerializeField] float meleeHitCooldown = 0.5f;
     [SerializeField] int baseDamage = 1;
     [SerializeField] Animator anim;
+    [SerializeField] ParticleSystem particles;
 
     public int Damage => baseDamage + (int)UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.Damage);
 
@@ -45,6 +46,9 @@ public class Melee : MonoBehaviour
 
 
         AudioManager.Instance.PlayRandomSound(bubbleMeleeAudios, Random.Range(0.9f, 1.1f));
+
+	if (particles != null)
+		particles.Play();
     }
 
     void Stab()
