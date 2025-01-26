@@ -38,11 +38,9 @@ public class MainMenuManager : MonoBehaviour
         HideButtonLabels();
     }
 
-    public void ButtonToCredits()
+    public void ButtonToQuit()
     {
-        // :D
-
-        HideButtonLabels();
+        Application.Quit();
     }
 
     void HideButtonLabels()
