@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Melee : MonoBehaviour
 {
+    [SerializeField] AudioClip shooshAudio;
+    [SerializeField] AudioClip bubblePopAudio;
     [SerializeField] Weapon currentWeapon;
     [SerializeField] Transform meleeHitPoint;
     [SerializeField] float meleeHitSize = 3f;
@@ -20,6 +22,8 @@ public class Melee : MonoBehaviour
 
     void Update()
     {
+        if (GameStateManager.Instance.CurrentGameState != GameState.Playing) return;
+
         if (inputHandler.BubbleMelee && Time.time >= nextHitTime)
             Hit();
 
@@ -31,15 +35,6 @@ public class Melee : MonoBehaviour
     {
         anim.SetTrigger("Hit");
 
-        //var hits = Physics.OverlapSphere(meleeHitPoint.position, meleeHitSize, targetedLayermask);
-        //foreach (var hit in hits)
-        //{
-        //    var health = hit.GetComponent<Health>();
-        //    if (health != null && !health.IsBubbled)
-        //        health.TakeDamage(Damage);
-        //}
-        //nextHitTime = Time.time + Mathf.Max(0, meleeHitCooldown - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.AttackRate));
-
         Projectile projectileInstance = Instantiate(currentWeapon.projectilePrefab, meleeHitPoint.position, meleeHitPoint.rotation);
         Rigidbody rb = projectileInstance.GetComponent<Rigidbody>();
         
@@ -47,6 +42,8 @@ public class Melee : MonoBehaviour
             rb.linearVelocity = meleeHitPoint.forward * currentWeapon.projectileSpeed;
 
         nextHitTime = Time.time + currentWeapon.fireRate;
+
+        AudioManager.Instance.PlaySound(shooshAudio, Random.Range(0.9f, 1.1f));
     }
 
     void Stab()
@@ -60,6 +57,7 @@ public class Melee : MonoBehaviour
             if (health != null && health.IsBubbled)
             {
                 health.TakeDamage(1);
+                AudioManager.Instance.PlaySound(bubblePopAudio, Random.Range(0.9f, 1.1f));
             }
         }
 

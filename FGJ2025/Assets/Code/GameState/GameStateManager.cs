@@ -15,16 +15,16 @@ public class GameStateManager : MonoBehaviour
 
     public event Action<GameState> OnGameStateChanged;
 
-    GameState currentState;
+    public GameState CurrentGameState { get; private set; }
 
 
     void Awake() => Instance = this;
 
-    void Start() => SetGameState(GameState.Menu);
+    void Start() => SetGameState(GameState.Playing);
 
     public void SetGameState(GameState newState)
     {
-        currentState = newState;
-        OnGameStateChanged?.Invoke(currentState);
+        CurrentGameState = newState;
+        OnGameStateChanged?.Invoke(CurrentGameState);
     }
 }

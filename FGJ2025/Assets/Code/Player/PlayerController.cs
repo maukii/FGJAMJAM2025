@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GroundPlayer();
+     
+        if (GameStateManager.Instance.CurrentGameState != GameState.Playing) return;
+        
         HandleMovement();
         HandleRotation();
     }
