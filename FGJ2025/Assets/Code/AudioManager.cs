@@ -114,6 +114,18 @@ public class AudioManager : MonoBehaviour
         _soundAS.PlayOneShot(clip);
     }
 
+    public void PlayRandomSound(AudioClip[] audioClips, float pitch)
+    {
+        if (audioClips == null || audioClips.Length == 0)
+        {
+            Debug.LogWarning("AudioClips array is empty or null.");
+            return;
+        }
+
+        AudioClip randomClip = audioClips[Random.Range(0, audioClips.Length)];
+        PlaySound(randomClip, pitch);
+    }
+
     public void PlaySound(AudioClip clip, float pitch)
     {
         _soundAS.pitch = pitch;

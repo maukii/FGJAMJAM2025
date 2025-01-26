@@ -1,10 +1,9 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Health), typeof(AudioSource))]
+[RequireComponent(typeof(Health))]
 public class AudioOnDamage : MonoBehaviour
 {
     [SerializeField] AudioClip[] clips;
-    [SerializeField] AudioSource source;
 
     Health health;
 
@@ -17,8 +16,6 @@ public class AudioOnDamage : MonoBehaviour
 
     void OnTakeDamage()
     {
-        var clip = clips[Random.Range(0, clips.Length)];
-        source.clip = clip;
-        source.Play();
+        AudioManager.Instance.PlayRandomSound(clips, Random.Range(0.9f, 1.1f));
     }
 }

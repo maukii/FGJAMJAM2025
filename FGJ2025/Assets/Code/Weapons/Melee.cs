@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Melee : MonoBehaviour
 {
-    [SerializeField] AudioClip shooshAudio;
-    [SerializeField] AudioClip bubblePopAudio;
+    [SerializeField] AudioClip[] bubbleMeleeAudios;
+    [SerializeField] AudioClip[] bubblePopAudios;
     [SerializeField] Weapon currentWeapon;
     [SerializeField] Transform meleeHitPoint;
     [SerializeField] float meleeHitSize = 3f;
@@ -43,7 +43,8 @@ public class Melee : MonoBehaviour
 
         nextHitTime = Time.time + currentWeapon.fireRate;
 
-        AudioManager.Instance.PlaySound(shooshAudio, Random.Range(0.9f, 1.1f));
+
+        AudioManager.Instance.PlayRandomSound(bubbleMeleeAudios, Random.Range(0.9f, 1.1f));
     }
 
     void Stab()
@@ -57,7 +58,8 @@ public class Melee : MonoBehaviour
             if (health != null && health.IsBubbled)
             {
                 health.TakeDamage(1);
-                AudioManager.Instance.PlaySound(bubblePopAudio, Random.Range(0.9f, 1.1f));
+                AudioManager.Instance.PlayRandomSound(bubblePopAudios, Random.Range(0.9f, 1.1f));
+                CameraShaker.Instance.Shake(0.2f, 0.2f, 10, 1, DG.Tweening.Ease.InOutFlash);
             }
         }
 

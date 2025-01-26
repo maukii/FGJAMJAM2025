@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerExperience : MonoBehaviour
 {
     public AudioClip ExpGetAudio;
+    public AudioClip levelUpAudio;
     public event Action OnPlayerLeveledUp;
 
     int experience = 0;
@@ -36,6 +37,7 @@ public class PlayerExperience : MonoBehaviour
     {
         experience -= ExpToNextLevel;
         level++;
+        AudioManager.Instance.PlaySound(levelUpAudio);
         OnPlayerLeveledUp?.Invoke();
     }
 }
