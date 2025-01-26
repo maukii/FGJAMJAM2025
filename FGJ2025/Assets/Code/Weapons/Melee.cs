@@ -94,7 +94,6 @@ public class Melee : MonoBehaviour
             {
                 health.TakeDamage(1);
                 AudioManager.Instance.PlayRandomSound(bubblePopAudios, Random.Range(0.9f, 1.1f));
-                CameraShaker.Instance.Shake(0.2f, 0.2f, 10, 1, DG.Tweening.Ease.InOutFlash);
             }
         }
 
