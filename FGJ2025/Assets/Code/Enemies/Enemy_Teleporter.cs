@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Enemy_Teleporter : EnemyController
 {
@@ -9,6 +10,8 @@ public class Enemy_Teleporter : EnemyController
     [Header("Teleport variables")]
     [SerializeField] float teleportInterval = 5f;
     [SerializeField] float teleportDistance = 5f;
+    [SerializeField] float teleportDuration = 0.2f;
+    [SerializeField] AnimationCurve teleportCurve;
 
     float attackTimer = 0f;
     float attackInterval = 3f;
@@ -52,6 +55,36 @@ public class Enemy_Teleporter : EnemyController
         transform.rotation = Quaternion.LookRotation(newDir);
     }
 
+    IEnumerator TeleportAnimation(float delay, float start, float end)
+    {
+        float pos;
+
+        pos = 0.0f;
+        while (pos < delay) {
+                pos += Time.deltaTime;
+                yield return null;
+        }
+
+        pos = 0.0f;
+        while (pos < teleportDuration) {
+                float t = pos / teleportDuration;
+
+                pos += Time.deltaTime;
+
+            Vector3 position = transform.localPosition;
+            position.y = Mathf.Lerp(start, end, teleportCurve.Evaluate(t));
+            transform.localPosition = position;
+
+            yield return null;
+        }
+
+        {
+            Vector3 position = transform.localPosition;
+            position.y = end;
+            transform.localPosition = position;
+        }
+    }
+
     void Teleport()
     {
         //Debug.Log(gameObject.name + " teleported");
@@ -63,6 +96,12 @@ public class Enemy_Teleporter : EnemyController
 
         // Reset attack timer on teleport
         attackTimer = 0f;
+
+        // Teleport in effect
+        StartCoroutine(TeleportAnimation(0.0f, -2.5f, 0.0f));
+
+        // Teleport out effect
+        StartCoroutine(TeleportAnimation(teleportInterval - teleportDuration, 0.0f, -2.5f));
     }
 
     protected override bool CanAttack()

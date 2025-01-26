@@ -56,6 +56,49 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 3754568191777873812, guid: 5f54360f1a7272847bb9de52b17684d2, type: 3}
   teleportInterval: 5
   teleportDistance: 5
+  teleportDuration: 0.3
+  teleportCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.27787346
+      value: 0.13561322
+      inSlope: -0.53479075
+      outSlope: -0.53479075
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28217444
+    - serializedVersion: 3
+      time: 0.8087575
+      value: 0.79567313
+      inSlope: -0.40184903
+      outSlope: -0.40184903
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3812584
+      outWeight: 0.54388154
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1165658857638897013
 MonoBehaviour:
   m_ObjectHideFlags: 0
