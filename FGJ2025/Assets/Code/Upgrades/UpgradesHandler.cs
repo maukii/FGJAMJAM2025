@@ -165,9 +165,15 @@ public class UpgradesHandler : MonoBehaviour
                     PlayerController.Instance.GetComponent<Health>().SetFullHealth();
                     break;
                 case UpgradeType.ProjectileCount:
-                    // TODO::
-                    break;
-
+                    for (int i = 0; i < allUpgrades.Count; i++)
+                    {
+                        UpgradeData upgradeOption = allUpgrades[i];
+                        if (upgradeOption.upgradeType == UpgradeType.ProjectileCount)
+                            allUpgrades.RemoveAt(i);
+                    }
+                    
+                    activeUpgrades.Add(UpgradeType.ProjectileCount, 1);
+                break;
             }
 
             return;
@@ -178,6 +184,8 @@ public class UpgradesHandler : MonoBehaviour
         
         activeUpgrades[upgrade.upgradeType] += upgrade.value;
     }
+
+    public bool HasUpgrade(UpgradeType type) => activeUpgrades.ContainsKey(type);
 
     public float GetUpgradeValue(UpgradeType type) => activeUpgrades.ContainsKey(type) ? activeUpgrades[type] : 0f;
 }

@@ -1754,7 +1754,7 @@ PrefabInstance:
       objectReference: {fileID: 253786527}
     - target: {fileID: 5114975900885202505, guid: 63afb76c2137ae647bbcbaf9241e2c78, type: 3}
       propertyPath: allUpgrades.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5114975900885202505, guid: 63afb76c2137ae647bbcbaf9241e2c78, type: 3}
       propertyPath: upgradesAreaCanvasGroup
@@ -1768,6 +1768,10 @@ PrefabInstance:
       propertyPath: 'allUpgrades.Array.data[5]'
       value: 
       objectReference: {fileID: 11400000, guid: 16e195356cf52ba4386ded113be0f0d1, type: 2}
+    - target: {fileID: 5114975900885202505, guid: 63afb76c2137ae647bbcbaf9241e2c78, type: 3}
+      propertyPath: 'allUpgrades.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d39886bbb1934be4bbf16c74f40a87fd, type: 2}
     - target: {fileID: 5114975900885202505, guid: 63afb76c2137ae647bbcbaf9241e2c78, type: 3}
       propertyPath: 'upgradeOptions.Array.data[0]'
       value: 
