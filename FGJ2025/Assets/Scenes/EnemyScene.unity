@@ -1641,7 +1641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca2c025e4da03a4c94ce29571796dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 8300000, guid: 122a989ba13e6d04aa4a672408f80099, type: 3}
+  music: {fileID: 8300000, guid: 8749c83cbb79f0e44882eed392cf54f5, type: 3}
 --- !u!4 &842453421
 Transform:
   m_ObjectHideFlags: 0
@@ -2296,6 +2296,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5925816793508103972, guid: eab862e20620c5e449b97b615ac67d72, type: 3}
   m_PrefabInstance: {fileID: 340699278}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1385352149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1385352151}
+  - component: {fileID: 1385352150}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1385352150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385352149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 0f7bf7570d36d084c95f964458b23d92, type: 2}
+--- !u!4 &1385352151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385352149}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404977547 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4857752445818626649, guid: af5db4c3be4c1024d9f34207419c1dfe, type: 3}
@@ -3260,6 +3309,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4585339750238613317, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
+      propertyPath: m_Dithering
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585339750238613317, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5817811584957550864, guid: 96e10ea0a6a30bc4fbbd5adb0dcf7e2a, type: 3}
       propertyPath: Target
       value: 
@@ -3429,3 +3486,4 @@ SceneRoots:
   - {fileID: 469298300}
   - {fileID: 191932705}
   - {fileID: 842453421}
+  - {fileID: 1385352151}
