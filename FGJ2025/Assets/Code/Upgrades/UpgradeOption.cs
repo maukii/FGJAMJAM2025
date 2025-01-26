@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] UpgradesHandler handler;
+
     [SerializeField] float hoverScale = 1.25f;
     [SerializeField] float scaleDuration = 0.25f;
 
@@ -14,8 +16,6 @@ public class UpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] TextMeshProUGUI upgradeDescriptionLabel;
     [SerializeField] Image upgradeBackground;
 
-
-    public event Action<UpgradeData> UpgradeOptionSelected;
 
     bool allowInput = false;
     UpgradeData upgradeData;
@@ -43,7 +43,7 @@ public class UpgradeOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (!allowInput) return;
 
-        UpgradeOptionSelected?.Invoke(upgradeData);
+        handler.OnUpgradeOptionSelected(upgradeData);
     }
 
     public void OnPointerExit(PointerEventData eventData)

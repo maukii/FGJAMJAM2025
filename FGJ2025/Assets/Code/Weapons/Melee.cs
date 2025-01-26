@@ -39,11 +39,14 @@ public class Melee : MonoBehaviour
         Rigidbody rb = projectileInstance.GetComponent<Rigidbody>();
         
         if (rb != null)
-            rb.linearVelocity = meleeHitPoint.forward * currentWeapon.projectileSpeed;
+        {
+            var baseDamping = rb.linearDamping;
+            rb.linearVelocity = meleeHitPoint.forward * (currentWeapon.projectileSpeed + UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.ProjectileSpeed));
+            rb.linearDamping = Mathf.Max(0, baseDamping - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.ProjectileRange));
+        }
 
-        nextHitTime = Time.time + currentWeapon.fireRate;
-
-
+        var baseFireRate = currentWeapon.fireRate;
+        nextHitTime = Time.time + Mathf.Max(0.5f, baseFireRate - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.AttackRate));
         AudioManager.Instance.PlayRandomSound(bubbleMeleeAudios, Random.Range(0.9f, 1.1f));
     }
 
@@ -63,7 +66,8 @@ public class Melee : MonoBehaviour
             }
         }
 
-        nextHitTime = Time.time + Mathf.Max(0, meleeHitCooldown - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.AttackRate));
+        var baseFireRate = currentWeapon.fireRate;
+        nextHitTime = Time.time + Mathf.Max(0.5f, baseFireRate - UpgradesHandler.Instance.GetUpgradeValue(UpgradeType.AttackRate));
     }
 
     void OnDrawGizmos()
