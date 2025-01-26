@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Split shot
   description: More bubbles
-  icon: {fileID: 21300000, guid: cb5a7770732a3a14bb9f947ddecef17b, type: 3}
+  icon: {fileID: 1381334628, guid: c17d2172d5b4e564e8b0feca9642c36a, type: 3}
   upgradeType: 6
   value: 3
   applyOnce: 1
