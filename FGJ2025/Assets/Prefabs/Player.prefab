@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 3299119858314401781}
   - component: {fileID: 6777361942203137472}
   - component: {fileID: 3190529530058246198}
-  - component: {fileID: 4184420609613646880}
   m_Layer: 6
   m_Name: Shadow
   m_TagString: Untagged
@@ -206,28 +205,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4184420609613646880
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2011961860505246709}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &3129289426278710290
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +393,8 @@ GameObject:
   - component: {fileID: 8033330620797851648}
   - component: {fileID: 6247143236707228454}
   - component: {fileID: 3076798628028480305}
+  - component: {fileID: 5811920132790916145}
+  - component: {fileID: 5943205696442032110}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -491,7 +470,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3897245373805283648}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnShoot
+        m_MethodName: OnBubbleMelee
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -568,7 +547,19 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3897245373805283648}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnStabMelee
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 54be22e4-8542-4060-84cf-a502e20de66e
     m_ActionName: 'Player/StabMelee[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -641,6 +632,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50599e0b7249c0c4991c58dac6dd15be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooshAudio: {fileID: 0}
+  bubblePopAudio: {fileID: 0}
   currentWeapon: {fileID: 11400000, guid: 72d21dac25687e440ad65b7ff9a187a3, type: 2}
   meleeHitPoint: {fileID: 3398253261038528122}
   meleeHitSize: 3
@@ -701,6 +694,36 @@ MonoBehaviour:
   BubbleCenterPos: {fileID: 0}
   canBubble: 0
   maxHealth: 5
+--- !u!114 &5811920132790916145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039210128952420876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabce32a9dd3b1e41bae355e887ad7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5943205696442032110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039210128952420876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc9ddeea5bd91e4aa4b8632a8df0268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderers:
+  - {fileID: 9032353215511365496}
+  - {fileID: 899204786660055267}
+  - {fileID: 8891717201366564490}
+  damageFlashMaterial: {fileID: 2100000, guid: 687ec669f22b873419ba7838d914bb8f, type: 2}
+  flashDuration: 0.2
 --- !u!1001 &4151831315657930949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -990,8 +1013,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3a83cd738928da489692cae7ad9ed4a, type: 3}
+--- !u!137 &899204786660055267 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5339904213963628506, guid: f3a83cd738928da489692cae7ad9ed4a, type: 3}
+  m_PrefabInstance: {fileID: 4151831315657930949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4473479506780184366 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f3a83cd738928da489692cae7ad9ed4a, type: 3}
+  m_PrefabInstance: {fileID: 4151831315657930949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8891717201366564490 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4396642182433536433, guid: f3a83cd738928da489692cae7ad9ed4a, type: 3}
+  m_PrefabInstance: {fileID: 4151831315657930949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &9032353215511365496 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4267413597131653187, guid: f3a83cd738928da489692cae7ad9ed4a, type: 3}
   m_PrefabInstance: {fileID: 4151831315657930949}
   m_PrefabAsset: {fileID: 0}

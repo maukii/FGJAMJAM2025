@@ -4,22 +4,26 @@ using UnityEngine;
 [RequireComponent(typeof(Health))]
 public class FlashOnDamage : MonoBehaviour
 {
+
+    [SerializeField] SkinnedMeshRenderer[] meshRenderers;
     [SerializeField] Material damageFlashMaterial;
     [SerializeField] float flashDuration = 0.2f;
 
-    MeshRenderer meshRenderer;
     Health health;
-    Material originalMaterial;
+    Material[][] originalMaterials;
     Coroutine damageFlashRoutine;
 
 
-    void Awake()
-    {
-        meshRenderer = GetComponent<MeshRenderer>();
-        health = GetComponent<Health>();
-    }
+    void Awake() => health = GetComponent<Health>();
 
-    void Start() => originalMaterial = meshRenderer.material;
+    void Start()
+    {
+        originalMaterials = new Material[meshRenderers.Length][];
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            originalMaterials[i] = meshRenderers[i].materials;
+        }
+    }
 
     void OnEnable() => health.OnTakeDamage += OnTakeDamage;
 
@@ -35,8 +39,23 @@ public class FlashOnDamage : MonoBehaviour
 
     IEnumerator DamageFlash()
     {
-        meshRenderer.material = damageFlashMaterial;
+        foreach (var renderer in meshRenderers)
+        {
+            Material[] flashMaterials = new Material[renderer.materials.Length];
+            for (int i = 0; i < flashMaterials.Length; i++)
+            {
+                flashMaterials[i] = damageFlashMaterial;
+            }
+            renderer.materials = flashMaterials;
+        }
+
         yield return new WaitForSeconds(flashDuration);
-        meshRenderer.material = originalMaterial;
+        
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            meshRenderers[i].materials = originalMaterials[i];
+        }
+
+        damageFlashRoutine = null;
     }
 }
