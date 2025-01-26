@@ -70,6 +70,7 @@ MonoBehaviour:
   BubbleCenterPos: {fileID: 9165495978946032961}
   canBubble: 1
   maxHealth: 1
+  unbubbleDuration: 5
 --- !u!114 &2449361972948665080
 MonoBehaviour:
   m_ObjectHideFlags: 0

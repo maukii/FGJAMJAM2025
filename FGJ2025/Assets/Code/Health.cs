@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] bool canBubble = true;
     [SerializeField] int maxHealth = 100;
+    [SerializeField] float unbubbleDuration = 5.0f;
     
     public bool IsBubbled => isBubbled;
     public event Action<int, int> OnHealthChanged;
@@ -57,11 +58,25 @@ public class Health : MonoBehaviour
     {
         isBubbled = true;
         bubbleGO = Instantiate(BubblePrefab, transform);
+	bubbleGO.GetComponent<BubbleWobble>().OnDestroyed += Unbubble;
+
+	Destroy(bubbleGO, unbubbleDuration);
+
         if(BubbleCenterPos)
         {
             bubbleGO.transform.position = BubbleCenterPos.position;
         }
+
         OnBubbled?.Invoke();
+    }
+
+    void Unbubble()
+    {
+	if (!isBubbled)
+		return;
+
+        isBubbled = false;
+	SetFullHealth();
     }
 
     void Die()
